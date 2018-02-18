@@ -1,6 +1,5 @@
 |Constant  |Value  |Description
 |----------|------:|-----------|
-|None  |0  |    No key pressed.
 |Cancel  |3  |    The CANCEL key.
 |Back  |8  |    The BACKSPACE key.
 |Tab  |9  |    The TAB key.
@@ -170,12 +169,10 @@
 |OemQuotes  |222  |    The OEM singled/double quote key on a US standard keyboard (Windows 2000 or later).
 |Oem7  |222  |    The OEM 7 key.
 |Oem8  |223  |    The OEM 8 key.
-        //     The OEM angle bracket or backslash key on the RT 102 key keyboard (Windows 2000
-|OemBackslash  |226  |    or later).
+|OemBackslash  |226  |    The OEM angle bracket or backslash key on the RT 102 key keyboard (Windows 2000or later).
 |Oem102  |226  |    The OEM 102 key.
 |ProcessKey  |229  |    The PROCESS KEY key.
-        //     Used to pass Unicode characters as if they were keystrokes. The Packet key value
-|Packet  |231  |    is the low word of a 32-bit virtual-key value used for non-keyboard input methods.
+|Packet  |231  |    Used to pass Unicode characters as if they were keystrokes. The Packet key value is the low word of a 32-bit virtual-key value used for non-keyboard input methods.
 |Attn  |246  |    The ATTN key.
 |Crsel  |247  |    The CRSEL key.
 |Exsel  |248  |    The EXSEL key.
@@ -188,5 +185,4 @@
 |KeyCode  |65535  |    The bitmask to extract a key code from a key value.
 |Shift  |65536  |    The SHIFT modifier key.
 |Control  |131072  |    The CTRL modifier key.
-        //     The ALT modifier key.
-        Alt = 262144
+|Alt      |262144  |     The ALT modifier key.
