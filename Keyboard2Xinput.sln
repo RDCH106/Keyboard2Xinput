@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Keyboard2XinputGui", "Keyboard2XinputGui\Keyboard2XinputGui.csproj", "{11F3DE52-BAC3-4845-867A-0BC76731CF6A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Keyboard2XinputLib", "Keyboard2XinputLib\Keyboard2XinputLib.csproj", "{42063F54-67C3-4331-B0B9-6FFA12A147FF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{11F3DE52-BAC3-4845-867A-0BC76731CF6A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11F3DE52-BAC3-4845-867A-0BC76731CF6A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11F3DE52-BAC3-4845-867A-0BC76731CF6A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11F3DE52-BAC3-4845-867A-0BC76731CF6A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{42063F54-67C3-4331-B0B9-6FFA12A147FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{42063F54-67C3-4331-B0B9-6FFA12A147FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{42063F54-67C3-4331-B0B9-6FFA12A147FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{42063F54-67C3-4331-B0B9-6FFA12A147FF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FE718F23-EB70-418C-A6C0-B1B6CCEE17CA}
+	EndGlobalSection
+EndGlobal
