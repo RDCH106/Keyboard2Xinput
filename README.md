@@ -41,12 +41,41 @@ J = RT
 L = LT
 ```
 
-keys reference:
-The list of keys is taken from the enum `System.Windows.Forms.Keys`. See [virtual key names](virtualKeyNames.md) for the complete list of mappable keyboard keys.
+Each [pad*n*] section defines a configuration for a pad. Each maps a key to a button/axis of the Xbox 360 gamepad. The keys and values are **case-sensitive**.
+
+### keys reference:
+The list of keys is taken from .net's enum `System.Windows.Forms.Keys`. See [virtual key names](virtualKeyNames.md) for the complete list of mappable keyboard keys.
+
+### buttons/axes reference:
+All buttons and axes must be in uppercase
+#### Buttons:
+UP : Up
+DOWN : Down
+LEFT : Left
+RIGHT : Right
+A : A
+B : B
+X : X
+Y : Y
+START : Start
+BACK : Back
+GUIDE : Guide
+LB : LeftShoulder
+LTB : LeftThumb
+RB : RightShoulder
+RTB : RightThumb
+
+#### Axes:
+LT : LeftTrigger
+RT : RightTrigger
+LX : LeftThumbX
+LY : LeftThumbY
+RX : RightThumbX
+RY : RightThumbY
 
 ## Known bugs/limitations
  * Return and Enter keys both respond to the 'Return' Virtual Key name.
- * axes do not work 
+ * Thumb axes do not work 
 
 This project uses:
  * ViGEm.NET by Nefarius (https://github.com/ViGEm/ViGEm.NET)
