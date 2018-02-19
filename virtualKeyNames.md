@@ -172,14 +172,12 @@
 |OemBackslash  |226  |    The OEM angle bracket or backslash key on the RT 102 key keyboard (Windows 2000or later).
 |Oem102  |226  |    The OEM 102 key.
 |ProcessKey  |229  |    The PROCESS KEY key.
-|Packet  |231  |    Used to pass Unicode characters as if they were keystrokes. The Packet key value is the low word of a 32-bit virtual-key value used for non-keyboard input methods.
 |Attn  |246  |    The ATTN key.
 |Crsel  |247  |    The CRSEL key.
 |Exsel  |248  |    The EXSEL key.
 |EraseEof  |249  |    The ERASE EOF key.
 |Play  |250  |    The PLAY key.
 |Zoom  |251  |    The ZOOM key.
-|NoName  |252  |    A constant reserved for future use.
 |Pa1  |253  |    The PA1 key.
 |OemClear  |254  |    The CLEAR key.
 |Shift  |65536  |    The SHIFT modifier key.
