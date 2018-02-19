@@ -49,29 +49,33 @@ The list of keys is taken from .net's enum `System.Windows.Forms.Keys`. See [vir
 ### buttons/axes reference:
 All buttons and axes must be in uppercase
 #### Buttons:
-UP : Up
-DOWN : Down
-LEFT : Left
-RIGHT : Right
-A : A
-B : B
-X : X
-Y : Y
-START : Start
-BACK : Back
-GUIDE : Guide
-LB : LeftShoulder
-LTB : LeftThumb
-RB : RightShoulder
-RTB : RightThumb
+value | description
+----- | ------
+UP    | Up
+DOWN  | Down
+LEFT  | Left
+RIGHT | Right
+A     | A
+B     | B
+X     | X
+Y     | Y
+START | Start
+BACK  | Back
+GUIDE | Guide
+LB    | Left Shoulder Button
+LTB   | Left Thumb Button
+RB    | Right Shoulder Button
+RTB   | Right Thumb Button
 
 #### Axes:
-LT : LeftTrigger
-RT : RightTrigger
-LX : LeftThumbX
-LY : LeftThumbY
-RX : RightThumbX
-RY : RightThumbY
+value | description
+----- | ------
+LT    | LeftTrigger
+RT    | RightTrigger
+LX    | LeftThumbX
+LY    | LeftThumbY
+RX    | RightThumbX
+RY    | RightThumbY
 
 ## Known bugs/limitations
  * Return and Enter keys both respond to the 'Return' Virtual Key name.
