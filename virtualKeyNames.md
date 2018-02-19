@@ -182,7 +182,6 @@
 |NoName  |252  |    A constant reserved for future use.
 |Pa1  |253  |    The PA1 key.
 |OemClear  |254  |    The CLEAR key.
-|KeyCode  |65535  |    The bitmask to extract a key code from a key value.
 |Shift  |65536  |    The SHIFT modifier key.
 |Control  |131072  |    The CTRL modifier key.
 |Alt      |262144  |     The ALT modifier key.

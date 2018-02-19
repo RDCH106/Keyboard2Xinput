@@ -44,6 +44,10 @@ L = LT
 keys reference:
 The list of keys is taken from the enum `System.Windows.Forms.Keys`. See [virtual key names](virtualKeyNames.md) for the complete list of mappable keyboard keys.
 
+## Known bugs/limitations
+ * Return and Enter keys both respond to the 'Return' Virtual Key name.
+ * axes do not work 
+
 This project uses:
  * ViGEm.NET by Nefarius (https://github.com/ViGEm/ViGEm.NET)
  * ini-parser from rickyah (https://github.com/rickyah/ini-parser/tree/master)
