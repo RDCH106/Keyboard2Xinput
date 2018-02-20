@@ -149,5 +149,15 @@ namespace Keyboard2XinputLib
             buttonsDict.Add("RTB", Xbox360Buttons.RightThumb);
 
         }
+        public void Close()
+        {
+            log.Debug("Closing");
+            foreach(Xbox360Controller controller in controllers) {
+                log.Debug($"Disconnecting {controller.ToString()}" );
+                controller.Disconnect();
+            }
+            log.Debug("Disposing of ViGEm client");
+            client.Dispose();
+        }
     }
 }

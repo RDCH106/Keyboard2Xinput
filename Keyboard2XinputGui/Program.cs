@@ -11,6 +11,7 @@ namespace Keyboard2XinputGui
     static class Program
     {
         private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+        private static Keyboard2XinputGui gui;
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
@@ -38,10 +39,17 @@ namespace Keyboard2XinputGui
                 Application.SetCompatibleTextRenderingDefault(false);
                 AppDomain currentDomain = AppDomain.CurrentDomain;
                 currentDomain.UnhandledException += new UnhandledExceptionEventHandler(MyHandler);
-                Application.Run(new Keyboard2XinputGui(mappingFile));
+                Application.ApplicationExit += new EventHandler(OnApplicationExit);
+                gui = new Keyboard2XinputGui(mappingFile);
+                Application.Run(gui);
             }
 
 
+        }
+        
+        private static void OnApplicationExit(object sender, EventArgs e)
+        {
+            gui.CloseK2x();
         }
 
         static void MyHandler(object sender, UnhandledExceptionEventArgs e)

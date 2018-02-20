@@ -81,6 +81,11 @@ namespace Keyboard2XinputGui
         private LowLevelKeyboardProc _proc;
         private String mappingFile;
 
+        public void CloseK2x()
+        {
+            k2x.Close();
+        }
+
         private IntPtr SetHook(LowLevelKeyboardProc proc)
 
         {
