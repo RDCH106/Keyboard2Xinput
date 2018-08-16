@@ -7,8 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Keyboard2XinputGui", "Keybo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Keyboard2XinputLib", "Keyboard2XinputLib\Keyboard2XinputLib.csproj", "{42063F54-67C3-4331-B0B9-6FFA12A147FF}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ViGEmClient", "..\..\ViGEm.NET\ViGEmClient\ViGEmClient.csproj", "{AA18EBCF-7E9D-4BC5-8760-E8C6E9A773E5}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,10 +21,6 @@ Global
 		{42063F54-67C3-4331-B0B9-6FFA12A147FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{42063F54-67C3-4331-B0B9-6FFA12A147FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{42063F54-67C3-4331-B0B9-6FFA12A147FF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{AA18EBCF-7E9D-4BC5-8760-E8C6E9A773E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AA18EBCF-7E9D-4BC5-8760-E8C6E9A773E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AA18EBCF-7E9D-4BC5-8760-E8C6E9A773E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AA18EBCF-7E9D-4BC5-8760-E8C6E9A773E5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
