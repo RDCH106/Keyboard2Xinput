@@ -24,6 +24,7 @@ namespace Keyboard2XinputLib
         private List<Xbox360Controller> controllers;
         private List<Xbox360Report> reports;
         private Config config;
+        private Boolean enabled = true;
 
         public Keyboard2Xinput(String mappingFile)
         {
@@ -59,64 +60,70 @@ namespace Keyboard2XinputLib
         public Boolean keyEvent(int eventType, Keys vkCode)
         {
             Boolean handled = false;
-            for (int i = 1; i <= config.padCount; i++)
+
+            if (enabled)
             {
-                string sectionName = "pad" + (i);
-                // is the key pressed mapped to a button?
-                string mappedButton = config.mapping[sectionName][vkCode.ToString()];
-                if (mappedButton != null)
+
+                for (int i = 1; i <= config.padCount; i++)
                 {
-                    if (buttonsDict.ContainsKey(mappedButton))
+                    string sectionName = "pad" + (i);
+                    // is the key pressed mapped to a button?
+                    string mappedButton = config.mapping[sectionName][vkCode.ToString()];
+                    if (mappedButton != null)
                     {
-                        if ((eventType == WM_KEYDOWN) || (eventType == WM_SYSKEYDOWN))
+                        if (buttonsDict.ContainsKey(mappedButton))
                         {
-                            reports[i - 1].SetButtonState(buttonsDict[mappedButton], true);
-                            if (log.IsDebugEnabled)
+                            if ((eventType == WM_KEYDOWN) || (eventType == WM_SYSKEYDOWN))
                             {
-                                log.Debug($"pad{i} {mappedButton} down");
+                                reports[i - 1].SetButtonState(buttonsDict[mappedButton], true);
+                                if (log.IsDebugEnabled)
+                                {
+                                    log.Debug($"pad{i} {mappedButton} down");
+                                }
                             }
+                            else
+                            {
+                                reports[i - 1].SetButtonState(buttonsDict[mappedButton], false);
+                                if (log.IsDebugEnabled)
+                                {
+                                    log.Debug($"pad{i} {mappedButton} up");
+                                }
+                            }
+                            controllers[i - 1].SendReport(reports[i - 1]);
+                            handled = true;
+                        }
+                        else if (axesDict.ContainsKey(mappedButton))
+                        {
+                            if ((eventType == WM_KEYDOWN) || (eventType == WM_SYSKEYDOWN))
+                            {
+                                reports[i - 1].SetAxis(axesDict[mappedButton], 0xFF);
+                                if (log.IsDebugEnabled)
+                                {
+                                    log.Debug($"pad{i} {mappedButton} down");
+                                }
+                            }
+                            else
+                            {
+                                reports[i - 1].SetAxis(axesDict[mappedButton], 0x0);
+                                if (log.IsDebugEnabled)
+                                {
+                                    log.Debug($"pad{i} {mappedButton} up");
+                                }
+                            }
+                            controllers[i - 1].SendReport(reports[i - 1]);
+                            handled = true;
                         }
                         else
                         {
-                            reports[i - 1].SetButtonState(buttonsDict[mappedButton], false);
-                            if (log.IsDebugEnabled)
-                            {
-                                log.Debug($"pad{i} {mappedButton} up");
-                            }
                         }
-                        controllers[i - 1].SendReport(reports[i - 1]);
-                        handled = true;
-                    }
-                    else if (axesDict.ContainsKey(mappedButton))
-                    {
-                        if ((eventType == WM_KEYDOWN) || (eventType == WM_SYSKEYDOWN))
-                        {
-                            reports[i - 1].SetAxis(axesDict[mappedButton], 0xFF);
-                            if (log.IsDebugEnabled)
-                            {
-                                log.Debug($"pad{i} {mappedButton} down");
-                            }
-                        }
-                        else
-                        {
-                            reports[i - 1].SetAxis(axesDict[mappedButton], 0x0);
-                            if (log.IsDebugEnabled)
-                            {
-                                log.Debug($"pad{i} {mappedButton} up");
-                            }
-                        }
-                        controllers[i - 1].SendReport(reports[i - 1]);
-                        handled = true;
-                    }
-                    else
-                    {
                     }
                 }
+                if (!handled && log.IsDebugEnabled)
+                {
+                    log.Debug($"unmapped button {vkCode.ToString()}");
+                }
             }
-            if (!handled && log.IsDebugEnabled)
-            {
-                log.Debug($"unmapped button {vkCode.ToString()}");
-            }
+
             return handled;
         }
         private void InitializeAxesDict()
@@ -158,6 +165,18 @@ namespace Keyboard2XinputLib
             }
             log.Debug("Disposing of ViGEm client");
             client.Dispose();
+        }
+        public void Enable()
+        {
+            enabled = true;
+        }
+        public void Disable()
+        {
+            enabled = false;
+        }
+        public void ToggleEnabled()
+        {
+            enabled = !enabled;
         }
     }
 }

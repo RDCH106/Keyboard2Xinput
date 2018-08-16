@@ -59,6 +59,10 @@ namespace Keyboard2XinputLib
                     padCount = Math.Max(padCount, padNumber);
 
                 }
+                else  if ("config".Equals(section.SectionName))
+                {
+                    // nothing special?
+                }
                 else
                 {
                     log.Error($"Ignored section [{section.SectionName}]");
