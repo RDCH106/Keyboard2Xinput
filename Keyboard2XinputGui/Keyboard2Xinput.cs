@@ -51,5 +51,17 @@ namespace Keyboard2XinputGui
             k2x.ToggleEnabled();
             //EnableToolStripMenuItem.
         }
+
+        private void ContextMenuOpening(object sender, CancelEventArgs e)
+        {
+            // make sure the 'enabled' item is up to date
+            ContextMenuStrip menu = (ContextMenuStrip)sender;
+            ToolStripItem[] item = menu.Items.Find("EnableToolStripMenuItem", true);
+            if (item.Length > 0)
+            {
+                ToolStripMenuItem toolStripMenuItem = (ToolStripMenuItem)item[0];
+                toolStripMenuItem.Checked = k2x.IsEnabled();
+            }
+        }
     }
 }

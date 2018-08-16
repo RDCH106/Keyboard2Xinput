@@ -67,8 +67,8 @@ namespace Keyboard2XinputLib
                 {
                     log.Error($"Ignored section [{section.SectionName}]");
                 }
-                log.Info($"found {padCount} pads");
             }
+            log.Info($"found {padCount} pads");
         }
     }
 }

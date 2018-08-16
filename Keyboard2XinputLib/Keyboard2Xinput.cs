@@ -118,10 +118,24 @@ namespace Keyboard2XinputLib
                         }
                     }
                 }
-                if (!handled && log.IsDebugEnabled)
+            }
+            // handle the enable toggle key even if disabled (otherwise there's not much point to it...)
+            string enableButton = config.mapping["config"][vkCode.ToString()];
+            if ("enableToggle".Equals(enableButton))
+            {
+                if ((eventType == WM_KEYDOWN) || (eventType == WM_SYSKEYDOWN))
                 {
-                    log.Debug($"unmapped button {vkCode.ToString()}");
+                    ToggleEnabled();
+                    if (log.IsDebugEnabled)
+                    {
+                        log.Debug($"enableToggle down; enabled={enabled}");
+                    }
                 }
+                handled = true;
+            }
+            if (!handled && enabled && log.IsDebugEnabled)
+            {
+                log.Debug($"unmapped button {vkCode.ToString()}");
             }
 
             return handled;
@@ -159,8 +173,9 @@ namespace Keyboard2XinputLib
         public void Close()
         {
             log.Debug("Closing");
-            foreach(Xbox360Controller controller in controllers) {
-                log.Debug($"Disconnecting {controller.ToString()}" );
+            foreach (Xbox360Controller controller in controllers)
+            {
+                log.Debug($"Disconnecting {controller.ToString()}");
                 controller.Disconnect();
             }
             log.Debug("Disposing of ViGEm client");
@@ -177,6 +192,10 @@ namespace Keyboard2XinputLib
         public void ToggleEnabled()
         {
             enabled = !enabled;
+        }
+        public Boolean IsEnabled()
+        {
+            return enabled;
         }
     }
 }
