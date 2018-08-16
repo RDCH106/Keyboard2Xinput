@@ -21,8 +21,8 @@ namespace Keyboard2XinputGui
         
         private void notifyIcon1_DoubleClick_1(object sender, EventArgs e)
         {
-            Show();
-            WindowState = FormWindowState.Normal;
+            //Show();
+            //WindowState = FormWindowState.Normal;
         }
 
         private void Keyboard2XinputGui_Resize(object sender, EventArgs e)

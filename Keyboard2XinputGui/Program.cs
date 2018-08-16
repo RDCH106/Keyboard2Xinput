@@ -41,7 +41,9 @@ namespace Keyboard2XinputGui
                 currentDomain.UnhandledException += new UnhandledExceptionEventHandler(MyHandler);
                 Application.ApplicationExit += new EventHandler(OnApplicationExit);
                 gui = new Keyboard2XinputGui(mappingFile);
-                Application.Run(gui);
+                // Run() without parameter to not show the form at launch
+                Application.Run();
+                //Application.Run(gui);
             }
 
 
