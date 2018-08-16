@@ -63,5 +63,11 @@ namespace Keyboard2XinputGui
                 toolStripMenuItem.Checked = k2x.IsEnabled();
             }
         }
+
+        private void AboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AboutBox aboutBox = new AboutBox();
+            aboutBox.Show();
+        }
     }
 }

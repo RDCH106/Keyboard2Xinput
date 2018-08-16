@@ -75,14 +75,15 @@ namespace Keyboard2XinputGui
             this.EnableToolStripMenuItem,
             this.ExitToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(110, 70);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(153, 92);
             this.contextMenuStrip1.Opening += new System.ComponentModel.CancelEventHandler(this.ContextMenuOpening);
             // 
             // AboutToolStripMenuItem
             // 
             this.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem";
-            this.AboutToolStripMenuItem.Size = new System.Drawing.Size(109, 22);
+            this.AboutToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.AboutToolStripMenuItem.Text = "About";
+            this.AboutToolStripMenuItem.Click += new System.EventHandler(this.AboutToolStripMenuItem_Click);
             // 
             // EnableToolStripMenuItem
             // 
@@ -90,14 +91,14 @@ namespace Keyboard2XinputGui
             this.EnableToolStripMenuItem.CheckOnClick = true;
             this.EnableToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.EnableToolStripMenuItem.Name = "EnableToolStripMenuItem";
-            this.EnableToolStripMenuItem.Size = new System.Drawing.Size(109, 22);
+            this.EnableToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.EnableToolStripMenuItem.Text = "Enable";
             this.EnableToolStripMenuItem.Click += new System.EventHandler(this.EnableToolStripMenuItem_Click);
             // 
             // ExitToolStripMenuItem
             // 
             this.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem";
-            this.ExitToolStripMenuItem.Size = new System.Drawing.Size(109, 22);
+            this.ExitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.ExitToolStripMenuItem.Text = "Exit";
             this.ExitToolStripMenuItem.Click += new System.EventHandler(this.ExitToolStripMenuItem_Click);
             // 
