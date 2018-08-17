@@ -10,8 +10,12 @@ The awesome ViGEm Bus Driver (https://github.com/ViGEm/ViGEmBus). Follow install
 
 Note: as of 2018/08/17, the installation page (https://docs.vigem.org/#!vigem-bus-driver-installation.md) doesn't show anything. In the meantime, follow https://github.com/ViGEm/docs.vigem.org/blob/master/vigem-bus-driver-installation.md
 
-## Installation
-Just unzip & launch Keyboard2XinputGui.exe
+## Download & Installation
+Download the latest zip from https://gitlab.com/SchwingSK/Keyboard2Xinput/tags
+
+Make sure that ViGEm Bus Driver is installed (see Requirements).
+
+Unzip & launch Keyboard2XinputGui.exe
 
 ## Configuration
 Example mapping.ini file:
