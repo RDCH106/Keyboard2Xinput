@@ -8,6 +8,8 @@ Has been successfully tested with Astebreed, BlazBlue: Calamity Trigger, BlazBlu
 ## Requirements
 The awesome ViGEm Bus Driver (https://github.com/ViGEm/ViGEmBus). Follow installation instructions carefully.
 
+Note: as of 2018/08/17, the installation page (https://docs.vigem.org/#!vigem-bus-driver-installation.md) doesn't show anything. In the meantime, follow https://github.com/ViGEm/docs.vigem.org/blob/master/vigem-bus-driver-installation.md
+
 ## Installation
 Just unzip & launch Keyboard2XinputGui.exe
 
