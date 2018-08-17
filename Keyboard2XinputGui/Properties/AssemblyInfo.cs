@@ -1,4 +1,4 @@
-﻿using System.Reflection;
+﻿    using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("Keyboard2XinputGui")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Official homepage: https://gitlab.com/SchwingSK/Keyboard2Xinput")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Schwing")]
 [assembly: AssemblyProduct("Keyboard2XinputGui")]
@@ -22,7 +22,7 @@ using System.Runtime.InteropServices;
 // The following GUID is for the ID of the typelib if this project is exposed to COM
 [assembly: Guid("11f3de52-bac3-4845-867a-0bc76731cf6a")]
 
-// Version information for an assembly consists of the following four values:
+// Version information for an assembly consists of the following four values:   
 //
 //      Major Version
 //      Minor Version
