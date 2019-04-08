@@ -6,7 +6,7 @@ This project was created to fill a very specific need: using an I-PAC (or keyboa
 Has been successfully tested with Astebreed, BlazBlue: Calamity Trigger, BlazBlue: Chronophantasma Extend, BlazBlue: Continuum Shift Extend, Broforce, Darius Burst Chronicle Saviours, DoDonPachi Resurrection, Mortal Kombat X, PAC-MAN Championship Edition DX+, Raiden IV: OverKill, Street Fighter V, The Bug Butcher, Ultimate Marvel vs. Capcom 3.
 
 ## Requirements
-The awesome ViGEm Bus Driver (https://github.com/ViGEm/ViGEmBus). Follow installation instructions carefully (https://docs.vigem.org/#!vigem-bus-driver-installation.md).
+The awesome ViGEm Bus Driver (https://github.com/ViGEm/ViGEmBus). Follow installation instructions carefully (https://docs.vigem.org/#!vigem-bus-driver-installation.md). If you prefer Youtube videos, someone created one: https://forums.vigem.org/topic/268/vigem-installation-how-to-video.
 
 ## Download & Installation
 Download the latest zip from https://gitlab.com/SchwingSK/Keyboard2Xinput/tags
