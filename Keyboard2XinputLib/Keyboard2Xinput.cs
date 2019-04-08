@@ -18,7 +18,7 @@ namespace Keyboard2XinputLib
         public const int WM_KEYUP = 0x0101;
         public const int WM_SYSKEYDOWN = 0x0104;
         private Dictionary<string, Xbox360Buttons> buttonsDict = new Dictionary<string, Xbox360Buttons>();
-        private Dictionary<string, Xbox360Axes> axesDict = new Dictionary<string, Xbox360Axes>();
+        private Dictionary<string, KeyValuePair<Xbox360Axes, short>> axesDict = new Dictionary<string, KeyValuePair<Xbox360Axes, short>>();
 
 
         private ViGEmClient client;
@@ -53,7 +53,6 @@ namespace Keyboard2XinputLib
                 controller.Connect();
                 reports.Add(new Xbox360Report());
                 Thread.Sleep(1000);
-
             }
 
         }
@@ -96,16 +95,10 @@ namespace Keyboard2XinputLib
                         }
                         else if (axesDict.ContainsKey(mappedButton))
                         {
+                            KeyValuePair<Xbox360Axes, short> axisValuePair = axesDict[mappedButton];
                             if ((eventType == WM_KEYDOWN) || (eventType == WM_SYSKEYDOWN))
                             {
-                                if (mappedButton == "LLEFT" || mappedButton == "RLEFT" || mappedButton == "LDOWN" || mappedButton == "RDOWN")
-                                { reports[i - 1].SetAxis(axesDict[mappedButton], -0x7530); }
-                                if (mappedButton == "LRIGHT" || mappedButton == "RRIGHT" || mappedButton == "LUP" || mappedButton == "RUP")
-                                { reports[i - 1].SetAxis(axesDict[mappedButton], 0x7530); }
-
-                                if (mappedButton == "RT" || mappedButton == "LT")
-                                { reports[i - 1].SetAxis(axesDict[mappedButton], 0xFF); }
-
+                                reports[i - 1].SetAxis(axisValuePair.Key, axisValuePair.Value);
                                 if (log.IsDebugEnabled)
                                 {
                                     log.Debug($"pad{i} {mappedButton} down");
@@ -113,7 +106,7 @@ namespace Keyboard2XinputLib
                             }
                             else
                             {
-                                reports[i - 1].SetAxis(axesDict[mappedButton], 0x0);
+                                reports[i - 1].SetAxis(axisValuePair.Key, 0x0);
                                 if (log.IsDebugEnabled)
                                 {
                                     log.Debug($"pad{i} {mappedButton} up");
@@ -122,9 +115,7 @@ namespace Keyboard2XinputLib
                             controllers[i - 1].SendReport(reports[i - 1]);
                             handled = true;
                         }
-                        else
-                        {
-                        }
+
                     }
                 }
             }
@@ -151,16 +142,20 @@ namespace Keyboard2XinputLib
         }
         private void InitializeAxesDict()
         {
-            axesDict.Add("LT", Xbox360Axes.LeftTrigger);
-            axesDict.Add("RT", Xbox360Axes.RightTrigger);
-            axesDict.Add("LLEFT", Xbox360Axes.LeftThumbX);
-            axesDict.Add("LRIGHT", Xbox360Axes.LeftThumbX);
-            axesDict.Add("LUP", Xbox360Axes.LeftThumbY);
-            axesDict.Add("LDOWN", Xbox360Axes.LeftThumbY);
-            axesDict.Add("RLEFT", Xbox360Axes.RightThumbX);
-            axesDict.Add("RRIGHT", Xbox360Axes.RightThumbX);
-            axesDict.Add("RUP", Xbox360Axes.RightThumbY);
-            axesDict.Add("RDOWN", Xbox360Axes.RightThumbY);
+            // a bit weird: left& right thumb axes max values are 0x7530 (max short value), but left & right triggers max value are 0xFF
+            short triggerValue = 0xFF;
+            short posAxisValue = 0x7530;
+            short negAxisValue = -0x7530;
+            axesDict.Add("LT", new KeyValuePair<Xbox360Axes, short>(Xbox360Axes.LeftTrigger, triggerValue));
+            axesDict.Add("RT", new KeyValuePair<Xbox360Axes, short>(Xbox360Axes.RightTrigger, triggerValue));
+            axesDict.Add("LLEFT", new KeyValuePair<Xbox360Axes, short>(Xbox360Axes.LeftThumbX, negAxisValue));
+            axesDict.Add("LRIGHT", new KeyValuePair<Xbox360Axes, short>(Xbox360Axes.LeftThumbX, posAxisValue));
+            axesDict.Add("LUP", new KeyValuePair<Xbox360Axes, short>(Xbox360Axes.LeftThumbY, posAxisValue));
+            axesDict.Add("LDOWN", new KeyValuePair<Xbox360Axes, short>(Xbox360Axes.LeftThumbY, negAxisValue));
+            axesDict.Add("RLEFT", new KeyValuePair<Xbox360Axes, short>(Xbox360Axes.RightThumbX, negAxisValue));
+            axesDict.Add("RRIGHT", new KeyValuePair<Xbox360Axes, short>(Xbox360Axes.RightThumbX, posAxisValue));
+            axesDict.Add("RUP", new KeyValuePair<Xbox360Axes, short>(Xbox360Axes.RightThumbY, posAxisValue));
+            axesDict.Add("RDOWN", new KeyValuePair<Xbox360Axes, short>(Xbox360Axes.RightThumbY, negAxisValue));
 
         }
 
