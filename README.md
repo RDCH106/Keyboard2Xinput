@@ -3,12 +3,10 @@ Creates virtual Xbox 360 gamepads backed by keyboard inputs.
 
 This project was created to fill a very specific need: using an I-PAC (or keyboard) to play recent Windows games that only accept XInput as input and/or do not allow 2 players on the keyboard.
 
-Has been successfully tested with Astebreed, BlazBlue: Calamity Trigger, BlazBlue: Chronophantasma Extend, BlazBlue: Continuum Shift Extend, Broforce, Darius Burst Chronicle Saviours, DoDonPachi Resurrection, Mortal Kombat X, PAC-MAN Championship Edition DX+, Raiden IV: OverKill, Street Fighter V, The Bug Butcher, Ultimate Marvel vs. Capcom 3. 
+Has been successfully tested with Astebreed, BlazBlue: Calamity Trigger, BlazBlue: Chronophantasma Extend, BlazBlue: Continuum Shift Extend, Broforce, Darius Burst Chronicle Saviours, DoDonPachi Resurrection, Mortal Kombat X, PAC-MAN Championship Edition DX+, Raiden IV: OverKill, Street Fighter V, The Bug Butcher, Ultimate Marvel vs. Capcom 3.
 
 ## Requirements
-The awesome ViGEm Bus Driver (https://github.com/ViGEm/ViGEmBus). Follow installation instructions carefully.
-
-Note: as of 2018/08/17, the installation page (https://docs.vigem.org/#!vigem-bus-driver-installation.md) doesn't show anything. In the meantime, follow https://github.com/ViGEm/docs.vigem.org/blob/master/vigem-bus-driver-installation.md
+The awesome ViGEm Bus Driver (https://github.com/ViGEm/ViGEmBus). Follow installation instructions carefully (https://docs.vigem.org/#!vigem-bus-driver-installation.md).
 
 ## Download & Installation
 Download the latest zip from https://gitlab.com/SchwingSK/Keyboard2Xinput/tags
@@ -105,7 +103,6 @@ You need Microsoft Visual Studio 2017 (Community edition is ok, that's what I'm 
 
 ## Known bugs/limitations
  * Return and Enter keys both respond to the 'Return' Virtual Key name.
- * Thumb axes do not work 
 
 This project uses:
  * ViGEm.NET by Nefarius (https://github.com/ViGEm/ViGEm.NET)
