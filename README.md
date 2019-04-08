@@ -97,7 +97,7 @@ RRIGHT| Right Thumb Stick Right
 ## Usage
 Run Keyboard2XinputGui.exe. An icon should appear in the Windows System tray; There is no main window. By right-clicking the icon, you can toggle key interception, see the about box and exit the program.
 
-By default, the program looks for a file named *mapping.ini* in the same folder. This behavior can be chnaged by giving the path of your mapping file to the programe as a parameter.
+By default, the program looks for a file named *mapping.ini* in the same folder. This behavior can be changed by giving the path of your mapping file to the program as a parameter.
 
 ## Troubleshooting
 A file named k2x.log should be created each time the program runs. It contains detailed information on the keys pressed (even if they're not mapped).
