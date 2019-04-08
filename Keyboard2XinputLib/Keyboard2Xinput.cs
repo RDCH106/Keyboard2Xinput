@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using System.Collections.Generic;
 
 using System.Windows.Forms;
@@ -51,6 +52,7 @@ namespace Keyboard2XinputLib
 
                 controller.Connect();
                 reports.Add(new Xbox360Report());
+                Thread.Sleep(1000);
 
             }
 
@@ -96,7 +98,14 @@ namespace Keyboard2XinputLib
                         {
                             if ((eventType == WM_KEYDOWN) || (eventType == WM_SYSKEYDOWN))
                             {
-                                reports[i - 1].SetAxis(axesDict[mappedButton], 0xFF);
+                                if (mappedButton == "LLEFT" || mappedButton == "RLEFT" || mappedButton == "LDOWN" || mappedButton == "RDOWN")
+                                { reports[i - 1].SetAxis(axesDict[mappedButton], -0x7530); }
+                                if (mappedButton == "LRIGHT" || mappedButton == "RRIGHT" || mappedButton == "LUP" || mappedButton == "RUP")
+                                { reports[i - 1].SetAxis(axesDict[mappedButton], 0x7530); }
+
+                                if (mappedButton == "RT" || mappedButton == "LT")
+                                { reports[i - 1].SetAxis(axesDict[mappedButton], 0xFF); }
+
                                 if (log.IsDebugEnabled)
                                 {
                                     log.Debug($"pad{i} {mappedButton} down");
@@ -144,10 +153,14 @@ namespace Keyboard2XinputLib
         {
             axesDict.Add("LT", Xbox360Axes.LeftTrigger);
             axesDict.Add("RT", Xbox360Axes.RightTrigger);
-            axesDict.Add("LX", Xbox360Axes.LeftThumbX);
-            axesDict.Add("LY", Xbox360Axes.LeftThumbY);
-            axesDict.Add("RX", Xbox360Axes.RightThumbX);
-            axesDict.Add("RY", Xbox360Axes.RightThumbY);
+            axesDict.Add("LLEFT", Xbox360Axes.LeftThumbX);
+            axesDict.Add("LRIGHT", Xbox360Axes.LeftThumbX);
+            axesDict.Add("LUP", Xbox360Axes.LeftThumbY);
+            axesDict.Add("LDOWN", Xbox360Axes.LeftThumbY);
+            axesDict.Add("RLEFT", Xbox360Axes.RightThumbX);
+            axesDict.Add("RRIGHT", Xbox360Axes.RightThumbX);
+            axesDict.Add("RUP", Xbox360Axes.RightThumbY);
+            axesDict.Add("RDOWN", Xbox360Axes.RightThumbY);
 
         }
 
