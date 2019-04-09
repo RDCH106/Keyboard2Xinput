@@ -1,4 +1,5 @@
 ﻿using Keyboard2XinputLib;
+using Keyboard2XinputLib.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -132,10 +133,20 @@ namespace Keyboard2XinputGui
 
         public void InitK2x()
         {
-            k2x = new Keyboard2Xinput(mappingFile);
-            _proc = HookCallback;
+            try
+            {
+                k2x = new Keyboard2Xinput(mappingFile);
+                _proc = HookCallback;
 
-            SetHook(_proc);
+                SetHook(_proc);
+
+            }
+            catch (ViGEmBusNotFoundException)
+            {
+                K2xForm form = new K2xForm();
+                form.ShowDialog();
+                throw;
+            }
 
         }
 

@@ -8,6 +8,8 @@ using IniParser.Model;
 using Nefarius.ViGEm.Client;
 using Nefarius.ViGEm.Client.Targets;
 using Nefarius.ViGEm.Client.Targets.Xbox360;
+using Nefarius.ViGEm.Client.Exceptions;
+using Keyboard2XinputLib.Exceptions;
 
 namespace Keyboard2XinputLib
 {
@@ -35,9 +37,16 @@ namespace Keyboard2XinputLib
             InitializeButtonsDict();
             log.Debug("initialize dicts done.");
 
-
+            // try to init ViGEm
+            try
+            {
+                client = new ViGEmClient();
+            }
+            catch (VigemBusNotFoundException e)
+            {
+                throw new ViGEmBusNotFoundException("ViGEm bus not found, please make sure ViGEm is correctly installed.", e);
+            }
             // create pads
-            client = new ViGEmClient();
             controllers = new List<Xbox360Controller>(config.padCount);
             reports = new List<Xbox360Report>(config.padCount);
             for (int i = 1; i <= config.padCount; i++)
