@@ -186,11 +186,16 @@ namespace Keyboard2XinputGui
             if (nCode >= 0)
             {
                 int vkCode = Marshal.ReadInt32(lParam);
-                Boolean handled = k2x.keyEvent((int)wParam, (Keys)vkCode);
-                if (handled)
+                int handled = k2x.keyEvent((int)wParam, (Keys)vkCode);
+                if (handled == 1)
                 {
                     //Console.WriteLine("Intercepted: "+(Keys)vkCode);
                     return (IntPtr)(-1);
+                }
+                else if (handled == -1)
+                {
+                    // application exit requested
+                    Application.Exit();
                 }
                 else
                 {

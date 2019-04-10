@@ -67,9 +67,15 @@ namespace Keyboard2XinputLib
         }
 
 
-        public Boolean keyEvent(int eventType, Keys vkCode)
+        /// <summary>
+        /// andles key events
+        /// </summary>
+        /// <param name="eventType"></param>
+        /// <param name="vkCode"></param>
+        /// <returns>1 if the event has been handled, 0 if the key was mapped, and -1 if the exit key has been pressed</returns>
+        public int keyEvent(int eventType, Keys vkCode)
         {
-            Boolean handled = false;
+            int handled = 0;
 
             if (enabled)
             {
@@ -100,7 +106,7 @@ namespace Keyboard2XinputLib
                                 }
                             }
                             controllers[i - 1].SendReport(reports[i - 1]);
-                            handled = true;
+                            handled = 1;
                         }
                         else if (axesDict.ContainsKey(mappedButton))
                         {
@@ -122,7 +128,7 @@ namespace Keyboard2XinputLib
                                 }
                             }
                             controllers[i - 1].SendReport(reports[i - 1]);
-                            handled = true;
+                            handled = 1;
                         }
 
                     }
@@ -140,9 +146,16 @@ namespace Keyboard2XinputLib
                         log.Debug($"enableToggle down; enabled={enabled}");
                     }
                 }
-                handled = true;
+                handled = 1;
             }
-            if (!handled && enabled && log.IsDebugEnabled)
+            // key that exits the software
+            string exitButton = config.mapping["config"][vkCode.ToString()];
+            if ("exit".Equals(exitButton))
+            {
+
+                handled = -1;
+            }
+            if (handled == 0 && enabled && log.IsDebugEnabled)
             {
                 log.Debug($"unmapped button {vkCode.ToString()}");
             }
