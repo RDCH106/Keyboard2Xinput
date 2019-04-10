@@ -1,11 +1,6 @@
 ﻿using Keyboard2XinputLib;
 using Keyboard2XinputLib.Exceptions;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 
 using System.Diagnostics;
 
@@ -145,6 +140,8 @@ namespace Keyboard2XinputGui
             {
                 K2xForm form = new K2xForm();
                 form.ShowDialog();
+                // dispose of icon now, doing it afterwards seems to have no effect
+                notifyIcon1.Dispose();
                 throw;
             }
 
@@ -152,6 +149,8 @@ namespace Keyboard2XinputGui
 
         public void CloseK2x()
         {
+            // Don't forget to dispose of notification icon here, otherwise it will linger in the notification toolbar until the mouse hovers over it
+            notifyIcon1.Dispose();
             k2x.Close();
         }
 
