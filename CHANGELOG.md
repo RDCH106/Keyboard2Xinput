@@ -1,3 +1,7 @@
+1.2.0 (2019/07/12)
+- add option to start disabled - [Issue #4](https://gitlab.com/SchwingSK/Keyboard2Xinput/issues/4)
+- add distinct keys to enable/disable - [Issue #5](https://gitlab.com/SchwingSK/Keyboard2Xinput/issues/5)
+
 1.1.1 (2019/04/10)
 - Tray icon doesn't disappear when program exits - [Issue #2](https://gitlab.com/SchwingSK/Keyboard2Xinput/issues/2)
 - Confusing behavior when ViGem is not installed - [Issue #3](https://gitlab.com/SchwingSK/Keyboard2Xinput/issues/3)
