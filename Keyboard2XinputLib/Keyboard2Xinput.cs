@@ -37,6 +37,13 @@ namespace Keyboard2XinputLib
             InitializeButtonsDict();
             log.Debug("initialize dicts done.");
 
+            // start enabled?
+            String startEnabledStr = config.mapping["startup"]["enabled"];
+            // only start disabled if explicitly configured as such
+            if ((startEnabledStr != null) && ("false".Equals(startEnabledStr.ToLower()))) {
+                enabled = false;
+            }
+
             // try to init ViGEm
             try
             {

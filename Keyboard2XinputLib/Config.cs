@@ -59,7 +59,7 @@ namespace Keyboard2XinputLib
                     padCount = Math.Max(padCount, padNumber);
 
                 }
-                else  if ("config".Equals(section.SectionName))
+                else  if (("config".Equals(section.SectionName)) || ("startup".Equals(section.SectionName)))
                 {
                     // nothing special?
                 }

@@ -18,6 +18,8 @@ Unzip & launch Keyboard2XinputGui.exe
 ## Configuration
 Example mapping.ini file:
 ```ini
+[startup]
+enabled = true
 [config]
 Subtract = enableToggle
 Multiply = exit
@@ -53,6 +55,11 @@ J = LT
 D6 = START
 D2 = BACK
 ```
+The [startup] section defines:
+- enabled : if true, the pads are created and keys will be intercepted. This was the behavior before 1.2.0, and is still the default behavior if this section is not defined.
+
+    If false, the pads are created but keys will not be intercepted.
+
 The [config] section defines:
 - enableToggle : the key (here the minus key from the keypad) that toggles the interception of keys. Can be handy if you have a real keyboard connected and want to disable momentarily the interception, without quitting your game. This does NOT disconnect the gamepads.
 - exit : the key (here the multiply key from the keypad) that exits the program. This has been added because I use AutoHotKey to launch & kill Keyboard2Xinput, and could not figure out how to catch the exit process event (if there's one) triggered by AHK. While exiting by killing the process does work, it leaves the notification icon lingering until the mouse hovers over it. Having an exit key resolves this problem.
@@ -104,6 +111,7 @@ By default, the program looks for a file named *mapping.ini* in the same folder.
 
 ## Troubleshooting
 A file named k2x.log should be created each time the program runs. It contains detailed information on the keys pressed (even if they're not mapped).
+You can hop in [ArcadeControls.com forums](http://forum.arcadecontrols.com/index.php/topic,158047.0.html) if you run into problems, I'll do my best
 
 ## Building
 You need Microsoft Visual Studio 2017 (Community edition is ok, that's what I'm using).
@@ -111,6 +119,7 @@ You need Microsoft Visual Studio 2017 (Community edition is ok, that's what I'm 
 ## Known bugs/limitations
  * Return and Enter keys both respond to the 'Return' Virtual Key name.
 
+## Credits
 This project uses:
  * ViGEm.NET by Nefarius (https://github.com/ViGEm/ViGEm.NET)
  * ini-parser from rickyah (https://github.com/rickyah/ini-parser/tree/master)
