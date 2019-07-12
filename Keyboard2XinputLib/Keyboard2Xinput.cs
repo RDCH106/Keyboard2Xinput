@@ -154,6 +154,29 @@ namespace Keyboard2XinputLib
                     }
                 }
                 handled = 1;
+            } else  if ("enable".Equals(enableButton))
+            {
+                if ((eventType == WM_KEYDOWN) || (eventType == WM_SYSKEYDOWN))
+                {
+                    Enable();
+                    if (log.IsDebugEnabled)
+                    {
+                        log.Debug($"enable down; enabled={enabled}");
+                    }
+                }
+                handled = 1;
+            }
+            else if ("disable".Equals(enableButton))
+            {
+                if ((eventType == WM_KEYDOWN) || (eventType == WM_SYSKEYDOWN))
+                {
+                    Disable();
+                    if (log.IsDebugEnabled)
+                    {
+                        log.Debug($"disable down; enabled={enabled}");
+                    }
+                }
+                handled = 1;
             }
             // key that exits the software
             string exitButton = config.mapping["config"][vkCode.ToString()];
