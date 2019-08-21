@@ -6,7 +6,10 @@ This project was created to fill a very specific need: using an I-PAC (or keyboa
 Has been successfully tested with Astebreed, BlazBlue: Calamity Trigger, BlazBlue: Chronophantasma Extend, BlazBlue: Continuum Shift Extend, Broforce, Darius Burst Chronicle Saviours, DoDonPachi Resurrection, Mortal Kombat X, PAC-MAN Championship Edition DX+, Raiden IV: OverKill, Street Fighter V, The Bug Butcher, Ultimate Marvel vs. Capcom 3.
 
 ## Requirements
-The awesome ViGEm Bus Driver (https://github.com/ViGEm/ViGEmBus). Follow installation instructions carefully if you're on Windows 7 (https://github.com/ViGEm/ViGEmBus/releases).
+* The awesome ViGEm Bus Driver (https://github.com/ViGEm/ViGEmBus). Follow installation instructions carefully if you're on Windows 7 (https://github.com/ViGEm/ViGEmBus/releases).
+* Microsoft Visual C++ Redistributable for Visual Studio 2015 **32bit**
+
+  Be sure to download & install the 32 bit version!
 
 ## Download & Installation
 Download the latest zip from https://gitlab.com/SchwingSK/Keyboard2Xinput/tags
@@ -113,7 +116,20 @@ By default, the program looks for a file named *mapping.ini* in the same folder.
 
 ## Troubleshooting
 A file named k2x.log should be created each time the program runs. It contains detailed information on the keys pressed (even if they're not mapped).
-You can hop in [ArcadeControls.com forums](http://forum.arcadecontrols.com/index.php/topic,158047.0.html) if you run into problems, I'll do my best
+You can hop in [ArcadeControls.com forums](http://forum.arcadecontrols.com/index.php/topic,158047.0.html) if you run into problems, I'll do my best to help you.
+
+### The client launches but closes shortly after
+If you have the following error in k2x.log:
+
+    2019-08-19 17:22:09,557 [1] FATAL Keyboard2XinputGui.Program- System.DllNotFoundException: Unable to load DLL 'vigemclient.dll': The specified module could not be found. (Exception from HRESULT: 0x8007007E)
+    at Nefarius.ViGEm.Client.ViGEmClient.vigem_alloc()
+    at Nefarius.ViGEm.Client.ViGEmClient..ctor()
+    at Keyboard2XinputLib.Keyboard2Xinput..ctor(String mappingFile)
+    at Keyboard2XinputGui.Keyboard2XinputGui.InitK2x()
+    at Keyboard2XinputGui.Keyboard2XinputGui..ctor(String aMappingFile)
+    at Keyboard2XinputGui.Program.Main(String[] args)
+
+it probably means that you haven't installed the Visual C++ Redistributable for Visual Studio 2015 **32bit**, please install it.
 
 ## Building
 You need Microsoft Visual Studio 2017 (Community edition is ok, that's what I'm using).
