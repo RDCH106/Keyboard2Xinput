@@ -167,7 +167,7 @@
 |OemCloseBrackets  |221  |    The OEM close bracket key on a US standard keyboard (Windows 2000 or later).
 |Oem6  |221  |    The OEM 6 key.
 |OemQuotes  |222  |    The OEM singled/double quote key on a US standard keyboard (Windows 2000 or later).
-|Oem7  |222  |    The OEM 7 key. Apostrophe or single/double quote key (Use this if OemQuotes doesn't work).
+|Oem7  |222  |    The OEM 7 key. Apostrophe or single/double quote key (Use this if OemQuotes doesn't work, for instance on IPAC Ultimate I/O).
 |Oem8  |223  |    The OEM 8 key.
 |OemBackslash  |226  |    The OEM angle bracket or backslash key on the RT 102 key keyboard (Windows 2000or later).
 |Oem102  |226  |    The OEM 102 key.
