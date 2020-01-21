@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Keyboard2XinputLib;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -10,8 +11,10 @@ using System.Windows.Forms;
 
 namespace Keyboard2XinputGui
 {
-    public partial class Keyboard2XinputGui : Form
+    public partial class Keyboard2XinputGui : Form, StateListener
     {
+        private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
         public Keyboard2XinputGui(string aMappingFile)
         {
             mappingFile = aMappingFile;
@@ -68,6 +71,18 @@ namespace Keyboard2XinputGui
         {
             AboutBox aboutBox = new AboutBox();
             aboutBox.Show();
+        }
+
+        public void NotifyEnabled(bool enabled)
+        {
+            log.Debug($"NotifyEnabled: {enabled}");
+            if (enabled)
+            {
+                notifyIcon1.Icon = Properties.Resources.logo;
+            } else
+            {
+                notifyIcon1.Icon = Properties.Resources.logoRed;
+            }
         }
     }
 }

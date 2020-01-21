@@ -28,6 +28,7 @@ namespace Keyboard2XinputLib
         private List<Xbox360Report> reports;
         private Config config;
         private Boolean enabled = true;
+        private List<StateListener> listeners;
 
         public Keyboard2Xinput(String mappingFile)
         {
@@ -70,7 +71,20 @@ namespace Keyboard2XinputLib
                 reports.Add(new Xbox360Report());
                 Thread.Sleep(1000);
             }
+            listeners = new List<StateListener>();
+        }
 
+        public void AddListener(StateListener listener)
+        {
+            listeners.Add(listener);
+        }
+
+        private void NotifyListeners(Boolean enabled)
+        {
+            listeners.ForEach(delegate (StateListener listener)
+            {
+                listener.NotifyEnabled(enabled);
+            });
         }
 
 
@@ -244,14 +258,17 @@ namespace Keyboard2XinputLib
         public void Enable()
         {
             enabled = true;
+            NotifyListeners(enabled);
         }
         public void Disable()
         {
             enabled = false;
+            NotifyListeners(enabled);
         }
         public void ToggleEnabled()
         {
             enabled = !enabled;
+            NotifyListeners(enabled);
         }
         public Boolean IsEnabled()
         {

@@ -134,6 +134,7 @@ namespace Keyboard2XinputGui
                 _proc = HookCallback;
 
                 SetHook(_proc);
+                k2x.AddListener(this);
 
             }
             catch (ViGEmBusNotFoundException)

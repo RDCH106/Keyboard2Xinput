@@ -60,6 +60,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="StateListener.cs" />
     <Compile Include="ViGEmBusNotFoundException.cs" />
     <Compile Include="Config.cs" />
     <Compile Include="Keyboard2Xinput.cs" />
