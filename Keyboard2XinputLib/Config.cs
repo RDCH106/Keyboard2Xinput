@@ -15,12 +15,26 @@ namespace Keyboard2XinputLib
         private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         private static readonly String DEFAULT_NAME = "mapping.ini";
 
-        public IniData mapping { get; }
-        public int padCount { get; }
+        public List<IniData> Mappings { get; }
+        private int currentMappingIndex;
+        public int CurrentMappingIndex {
+            get { return currentMappingIndex; }
+            set {
+                if (value + 1 > Mappings.Count)
+                {
+                    log.Warn($"Mapping{value} doesn't exist; active mapping not changed");
+                } else
+                {
+                    currentMappingIndex = value;
+                }
 
+            }
+        }
+        public int PadCount { get; }
 
         public Config(string configFilePath)
         {
+            Mappings = new List<IniData>(0);
             if (configFilePath == null)
             {
                 configFilePath = DEFAULT_NAME;
@@ -40,15 +54,49 @@ namespace Keyboard2XinputLib
                 throw new FileNotFoundException($"Config file does not exist: {configFilePath}");
             }
 
-            log.Info($"Loading config file: {configFilePath}");
-
-            // read config
+            // read config(s)
             var parser = new FileIniDataParser();
-
-            // TODO check file existence; create a default one if it doesn't exist
-            mapping = parser.ReadFile(configFilePath);
-
+            log.Info($"Loading config file: {configFilePath}");
+            Mappings.Add(parser.ReadFile(configFilePath));
             // how many pads?
+            PadCount = Math.Max(PadCount, countPads(Mappings[0]));
+
+            // additional mappings
+            string baseFolder = System.IO.Path.GetDirectoryName(configFilePath);
+            int i = 1;
+            Boolean exists;
+            do {
+                configFilePath = $"{baseFolder}\\mapping{i}.ini";
+                exists = System.IO.File.Exists(configFilePath);
+                log.Info($"{configFilePath} exists: {exists}");
+                if (exists)
+                {
+                    log.Info($"Loading additional mapping file: {configFilePath}");
+                    Mappings.Add(parser.ReadFile(configFilePath));
+                    if (Mappings[i]["config"].Count > 0)
+                    {
+                        throw new Exception($"Additional mapping file {configFilePath} must NOT contain a 'config' section");
+                    }
+                    // update pad count
+                    PadCount = Math.Max(PadCount, countPads(Mappings[i]));
+                    // copy the config from mapping 0
+                    Mappings[i]["config"].Merge(Mappings[0]["config"]);
+                }
+                i++;
+            } while (exists);
+
+            log.Info($"found {PadCount} pads");
+            log.Info($"found {Mappings.Count} mappings");
+        }
+
+        public IniData getCurrentMapping()
+        {
+            return Mappings[currentMappingIndex];
+        }
+
+        private int countPads(IniData mapping)
+        {
+            int result = 0;
             foreach (SectionData section in mapping.Sections)
             {
                 String intStr = section.SectionName.Substring(section.SectionName.Length - 1);
@@ -56,10 +104,10 @@ namespace Keyboard2XinputLib
                 if (int.TryParse(intStr, out padNumber))
                 {
                     log.Debug($"found config for pad {padNumber}");
-                    padCount = Math.Max(padCount, padNumber);
+                    result = Math.Max(PadCount, padNumber);
 
                 }
-                else  if (("config".Equals(section.SectionName)) || ("startup".Equals(section.SectionName)))
+                else if (("config".Equals(section.SectionName)) || ("startup".Equals(section.SectionName)))
                 {
                     // nothing special?
                 }
@@ -68,7 +116,7 @@ namespace Keyboard2XinputLib
                     log.Error($"Ignored section [{section.SectionName}]");
                 }
             }
-            log.Info($"found {padCount} pads");
+            return result;
         }
     }
 }

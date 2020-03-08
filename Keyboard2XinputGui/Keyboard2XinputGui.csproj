@@ -131,7 +131,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Icon1.ico" />
     <Content Include="logo.ico" />
     <Content Include="logoRed.ico" />
   </ItemGroup>

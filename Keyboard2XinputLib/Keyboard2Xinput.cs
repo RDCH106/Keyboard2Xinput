@@ -39,7 +39,7 @@ namespace Keyboard2XinputLib
             log.Debug("initialize dicts done.");
 
             // start enabled?
-            String startEnabledStr = config.mapping["startup"]["enabled"];
+            String startEnabledStr = config.getCurrentMapping()["startup"]["enabled"];
             // only start disabled if explicitly configured as such
             if ((startEnabledStr != null) && ("false".Equals(startEnabledStr.ToLower()))) {
                 enabled = false;
@@ -55,9 +55,9 @@ namespace Keyboard2XinputLib
                 throw new ViGEmBusNotFoundException("ViGEm bus not found, please make sure ViGEm is correctly installed.", e);
             }
             // create pads
-            controllers = new List<Xbox360Controller>(config.padCount);
-            reports = new List<Xbox360Report>(config.padCount);
-            for (int i = 1; i <= config.padCount; i++)
+            controllers = new List<Xbox360Controller>(config.PadCount);
+            reports = new List<Xbox360Report>(config.PadCount);
+            for (int i = 1; i <= config.PadCount; i++)
             {
                 Xbox360Controller controller = new Xbox360Controller(client);
                 controllers.Add(controller);
@@ -101,11 +101,11 @@ namespace Keyboard2XinputLib
             if (enabled)
             {
 
-                for (int i = 1; i <= config.padCount; i++)
+                for (int i = 1; i <= config.PadCount; i++)
                 {
                     string sectionName = "pad" + (i);
                     // is the key pressed mapped to a button?
-                    string mappedButton = config.mapping[sectionName][vkCode.ToString()];
+                    string mappedButton = config.getCurrentMapping()[sectionName][vkCode.ToString()];
                     if (mappedButton != null)
                     {
                         if (buttonsDict.ContainsKey(mappedButton))
@@ -156,7 +156,7 @@ namespace Keyboard2XinputLib
                 }
             }
             // handle the enable toggle key even if disabled (otherwise there's not much point to it...)
-            string enableButton = config.mapping["config"][vkCode.ToString()];
+            string enableButton = config.getCurrentMapping()["config"][vkCode.ToString()];
             if ("enableToggle".Equals(enableButton))
             {
                 if ((eventType == WM_KEYDOWN) || (eventType == WM_SYSKEYDOWN))
@@ -193,11 +193,23 @@ namespace Keyboard2XinputLib
                 handled = 1;
             }
             // key that exits the software
-            string exitButton = config.mapping["config"][vkCode.ToString()];
-            if ("exit".Equals(exitButton))
+            string configButton = config.getCurrentMapping()["config"][vkCode.ToString()];
+            if ("exit".Equals(configButton))
             {
-
                 handled = -1;
+            }
+            else if ((configButton != null) && configButton.StartsWith("config"))
+            {
+                if ((eventType == WM_KEYDOWN) || (eventType == WM_SYSKEYDOWN))
+                {
+                    int index = Int32.Parse(configButton.Substring(configButton.Length - 1));
+                    if (log.IsDebugEnabled)
+                    {
+                        log.Debug($"Switching to mapping {index}");
+                    }
+                    config.CurrentMappingIndex = index;
+                }
+                handled = 1;
             }
             if (handled == 0 && enabled && log.IsDebugEnabled)
             {
