@@ -1,5 +1,7 @@
 /.vs
+/.idea
 bin/
+build/
 obj/
 /packages/
 /Keyboard2XinputLib/FodyWeavers.xsd
