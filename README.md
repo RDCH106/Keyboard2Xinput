@@ -155,3 +155,5 @@ This project uses:
  * ViGEm.NET by Nefarius (https://github.com/ViGEm/ViGEm.NET)
  * ini-parser from rickyah (https://github.com/rickyah/ini-parser/tree/master)
  * Logo hacked together from two artworks from ikillyou121 (https://www.deviantart.com/ikillyou121/art/Keyboard-Vector-555191125 and https://www.deviantart.com/ikillyou121/art/Old-Xbox-360-Controller-Cutie-Mark-467878925)
+ * Mistune for offline documentation rendering (https://mistune.readthedocs.io/en/v0.8.4/)
+ * GitHub-like CSS for offline documentation rendering: https://gist.github.com/dashed/6714393
