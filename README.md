@@ -135,13 +135,14 @@ it probably means that you haven't installed the Visual C++ Redistributable for 
 The default configuration maps the D-PAD to the joysticks. If your game expects that you use the analog left stick (Gauntlet Slayer Edition for instance), then you have to use a mapping that reflects that:
 
 ```ini
-(...))
+(...)
 [pad1]
 Up = LUP
 Down = LDOWN
 Left = LLEFT
 Right = LRIGHT
 (...)
+```
 
 ## Building
 You need Microsoft Visual Studio 2017 (Community edition is ok, that's what I'm using).
