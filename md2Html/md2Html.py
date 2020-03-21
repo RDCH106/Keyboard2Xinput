@@ -1,12 +1,15 @@
 from pathlib import Path
 from shutil import copyfile
+import os
 
 import mistune
 
-DEST_DIR = "../build/doc/"
+scriptDir = os.path.dirname(os.path.abspath(__file__))
+DEST_DIR = "{}/../build/doc/".format(scriptDir)
+print("{}".format(scriptDir))
 
-template = open("template.html", "r").read()
-files = ["../README.md", "../virtualKeyNames.md"]
+template = open("{}/template.html".format(scriptDir), "r").read()
+files = ["{}/../README.md".format(scriptDir), "{}/../virtualKeyNames.md".format(scriptDir)]
 for mdPath in files:
     mdFilename = Path(mdPath).name
     file = open(mdPath, "r")
@@ -21,4 +24,4 @@ for mdPath in files:
     with open(htmlFilename, "w") as htmlFile:
         htmlFile.write(html)
 #   don't forget to copy the css file
-copyfile("html.css", DEST_DIR + "/html.css")
+copyfile("{}/html.css".format(scriptDir), DEST_DIR + "/html.css")
