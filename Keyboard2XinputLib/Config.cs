@@ -77,6 +77,10 @@ namespace Keyboard2XinputLib
                     {
                         throw new Exception($"Additional mapping file {configFilePath} must NOT contain a 'config' section");
                     }
+                    if (Mappings[i]["startup"].Count > 0)
+                    {
+                        throw new Exception($"Additional mapping file {configFilePath} must NOT contain a 'startup' section");
+                    }
                     // update pad count
                     PadCount = Math.Max(PadCount, countPads(Mappings[i]));
                     // copy the config from mapping 0
