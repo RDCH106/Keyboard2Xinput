@@ -1,0 +1,31 @@
+version: 1.2.1.{build}
+image: Visual Studio 2017
+environment:
+  PYTHON: "C:\\Python38"
+dotnet_csproj:
+  patch: true
+  file: '**\*.csproj'
+  version: '{version}'
+  package_version: '{version}'
+  assembly_version: '{version}'
+  file_version: '{version}'
+  informational_version: '{version}'
+configuration:
+  - Release
+before_build:
+- ps: "nuget restore ; & $env:PYTHON\\python.exe -m pip install --upgrade pip --no-warn-script-location; & $env:PYTHON\\python.exe -m pip install mistune"
+build:
+  verbosity: minimal
+after_build:
+  - ps: '.\postBuild.ps1'
+artifacts:
+  - path: build\dist\Keyboard2Xinput.zip
+    name: k2xi zip
+deploy:
+  provider: FTP
+  protocol: sftp
+  host: kb2xi.schwingsk.net
+  username: '%upload_user%'
+  password: '%upload_password%'
+  folder: /home/www/kb2xi.schwingsk.net/builds
+  artifact: /.*\.zip/

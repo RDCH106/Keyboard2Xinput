@@ -6,7 +6,6 @@ import mistune
 
 scriptDir = os.path.dirname(os.path.abspath(__file__))
 DEST_DIR = "{}/../build/doc/".format(scriptDir)
-print("{}".format(scriptDir))
 
 template = open("{}/template.html".format(scriptDir), "r").read()
 files = ["{}/../README.md".format(scriptDir), "{}/../virtualKeyNames.md".format(scriptDir)]
