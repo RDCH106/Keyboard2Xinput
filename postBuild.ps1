@@ -22,7 +22,7 @@ Write-Host "Generating HTML documentation: Done."
 $zipPath="$distDir\Keyboard2Xinput.zip"
 Write-Host "Generating $zipPath"
 $compress = @{
-Path = "$TargetDir*.dll", "$TargetDir*.exe", "$TargetDir*.config", "$TargetDir*.ini", "sample\mappings\I-PAC2\mapping.ini", "build\doc", "samples"
+Path = "$TargetDir*.dll", "$TargetDir*.exe", "$TargetDir*.config", "$TargetDir*.ini", "samples\mappings\I-PAC2\mapping.ini", "build\doc", "samples"
 CompressionLevel = "Fastest"
 DestinationPath = "$zipPath"
 }
