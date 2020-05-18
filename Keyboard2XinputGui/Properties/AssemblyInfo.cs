@@ -1,4 +1,4 @@
-﻿    using System.Reflection;
+﻿using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Schwing")]
 [assembly: AssemblyProduct("Keyboard2XinputGui")]
-[assembly: AssemblyCopyright("Copyright ©  2018-2019")]
+[assembly: AssemblyCopyright("Copyright ©  2018-2020")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
