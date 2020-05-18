@@ -12,7 +12,7 @@ Has been successfully tested with Astebreed, BlazBlue: Calamity Trigger, BlazBlu
   Be sure to download & install the 32 bit version!
 
 ## Download & Installation
-Download the latest zip from https://gitlab.com/SchwingSK/Keyboard2Xinput/tags
+Download the latest zip from https://gitlab.com/SchwingSK/Keyboard2Xinput/-/tags
 
 Make sure that ViGEm Bus Driver is installed (see Requirements).
 
