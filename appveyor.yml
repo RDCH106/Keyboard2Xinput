@@ -2,6 +2,12 @@ version: 1.2.1.{build}
 image: Visual Studio 2017
 environment:
   PYTHON: "C:\\Python38"
+assembly_info:
+  patch: true
+  file: '**\AssemblyInfo.*'
+  assembly_version: "{version}.{build}"
+  assembly_file_version: "{version}"
+  assembly_informational_version: "{version}"  
 dotnet_csproj:
   patch: true
   file: '**\*.csproj'
