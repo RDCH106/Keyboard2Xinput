@@ -18,6 +18,8 @@ Write-Host "Using Python: $env:PYTHON"
 & $env:PYTHON\python.exe md2Html\md2Html.py
 Write-Host "Generating HTML documentation: Done."
 
+Copy-Item .\samples\ -Destination .\build\doc\ -Recurse
+
 # create zip
 $zipPath="$distDir\Keyboard2Xinput.zip"
 Write-Host "Generating $zipPath"
