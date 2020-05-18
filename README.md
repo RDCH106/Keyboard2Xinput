@@ -68,6 +68,11 @@ The [config] section defines:
 - enable : the key that enables key interception.
 - disable : the key that disables key interception.
 - exit : the key (here the multiply key from the keypad) that exits the program. This has been added because I use AutoHotKey to launch & kill Keyboard2Xinput, and could not figure out how to catch the exit process event (if there's one) triggered by AHK. While exiting by killing the process does work, it leaves the notification icon lingering until the mouse hovers over it. Having an exit key resolves this problem.
+- config0, config1, etc... allows to switch between mutiple mapping files. When using this, config0 points to you main mapping file, config1 points to a file named *mapping1.ini*, located in the same folder as your main mapping file; config2 points to *mapping2.ini*, and so on.
+   
+  When using multiple mapping files, **only** the main mapping file can contain [startup] and [config] sections (otherwise the key for changing mappings could vary according to the selected mapping, and it would be a configuration  (and troubleshooting) nightmare). 
+  Look in [samples/mappings/Multiple](samples/mappings/Multiple) for  example files.
+
 
 Each [pad*n*] section defines a configuration for a pad. Each maps a key to a button/axis of the Xbox 360 gamepad. The keys and values are **case-sensitive**.
 
@@ -114,6 +119,28 @@ Run Keyboard2XinputGui.exe. An icon should appear in the Windows System tray; Th
 
 By default, the program looks for a file named *mapping.ini* in the same folder. This behavior can be changed by giving the path of your mapping file to the program as a parameter.
 
+## Examples
+### Mappings
+You can find some reference mappings for IPAC2 & IPAC4 in [samples/mappings](samples/mappings) 
+### AutoHotKey scripts
+#### Steam
+See script [samples/AHKscripts/steamXinput.ahk](samples/AHKscripts/steamXinput.ahk).
+
+To run Steam games, you need to have their appId (see [https://steamdb.info/apps/](https://steamdb.info/apps/) to find you games appIds). Unfortunatley, steam doesn't return the handle of the game, so you can't use the classic AHK approach to monitor the game status. The best approach I've found (yay internet!) is to look in the Windows Registry, as Steam keeps each game status in there.
+
+So basically this script:
+- Runs k2xi
+- Runs the game via Steam by passing the game's AppId to Steam.exe
+- Waits until the game is launched by monitoring the Windows registry
+- Moves the mouse out of the way, because some games don't hide the mouse cursor
+- Waits until the game is closed by monitoring the Windows registry
+- Closes k2xi by pushing the key that's mapped to 'exit'
+- Gives back focus to Attract-Mode (change or disable if you don't use this Front-end)
+
+The resulting executable takes the appId as a parameter.
+For some old games that only detect gamepads when starting, you can add a sleep between the launch of kb2xi and the game.
+
+
 ## Troubleshooting
 A file named k2x.log should be created each time the program runs. It contains detailed information on the keys pressed (even if they're not mapped).
 You can hop in [ArcadeControls.com forums](http://forum.arcadecontrols.com/index.php/topic,158047.0.html) if you run into problems, I'll do my best to help you.
@@ -143,6 +170,12 @@ Left = LLEFT
 Right = LRIGHT
 (...)
 ```
+
+### Some joysticks are not detected
+If you launch kb2xi and immediately after your game, some of the configured gamepads may not have been 'plugged in' when the game starts. Some old games only detect joysticks when they start, so you have to either:
+- start kb2xi, wait a number of seconds (depends on your computer speed), then launch your game
+- start kb2xi when windows starts (with the gamepads disabled), and use the kb2xi hotkeys that allow you to enable/disable keys interception. That way the gamepads are always 'plugged in' but the keys are only redirected to them when you want to.
+
 
 ## Building
 You need Microsoft Visual Studio 2017 (Community edition is ok, that's what I'm using).
