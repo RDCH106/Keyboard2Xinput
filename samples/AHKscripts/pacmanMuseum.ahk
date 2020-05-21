@@ -15,10 +15,15 @@ ProcessCheckTimer:
 Process, Exist, PACMuseum.exe
 pid1 := ErrorLevel
 If (!pid1)
-{  Process, Exist, Keyboard2XinputGui.exe
-   pid2 := ErrorLevel
-   If (pid2)
-      Process, Close, %pid2%
-   ExitApp
+{  
+   # first method: kill k2xi
+   # Process, Exist, Keyboard2XinputGui.exe
+   # pid2 := ErrorLevel
+   # If (pid2)
+   #    Process, Close, %pid2%
+   # ExitApp
+
+   #second method: stop keyboard2Xinput by sending numpad multiply key (see k2x mapping.ini)
+   SendInput {NumpadMult}
 }
 Return
