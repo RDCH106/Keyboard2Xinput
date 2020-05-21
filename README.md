@@ -123,6 +123,9 @@ By default, the program looks for a file named *mapping.ini* in the same folder.
 ### Mappings
 You can find some reference mappings for IPAC2 & IPAC4 in [samples/mappings](samples/mappings) 
 ### AutoHotKey scripts
+### Non-steam game
+See script [samples/AHKscripts/pacmanMuseum.ahk](samples/AHKscripts/pacmanMuseum.ahk). This script is tailored for Pac-Man Museum, but can easily be adapted to other games.
+
 #### Steam
 See script [samples/AHKscripts/steamXinput.ahk](samples/AHKscripts/steamXinput.ahk).
 
@@ -139,6 +142,8 @@ So basically this script:
 
 The resulting executable takes the appId as a parameter.
 For some old games that only detect gamepads when starting, you can add a sleep between the launch of kb2xi and the game.
+
+Make sure to adapt the paths to you configuration!
 
 
 ## Troubleshooting
