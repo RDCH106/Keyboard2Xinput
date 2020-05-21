@@ -8,7 +8,7 @@ scriptDir = os.path.dirname(os.path.abspath(__file__))
 DEST_DIR = "{}/../build/doc/".format(scriptDir)
 
 template = open("{}/template.html".format(scriptDir), "r").read()
-files = ["{}/../README.md".format(scriptDir), "{}/../virtualKeyNames.md".format(scriptDir)]
+files = ["{}/../README.md".format(scriptDir), "{}/../virtualKeyNames.md".format(scriptDir), "{}/../CHANGELOG.md".format(scriptDir)]
 for mdPath in files:
     mdFilename = Path(mdPath).name
     file = open(mdPath, "r")

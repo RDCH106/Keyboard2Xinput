@@ -2,6 +2,7 @@
 - add multiple mappings support
 - add sample mappings (Thanks Angryherbalist for the IPAC4 mapping)
 - add sample AutoHotKey scripts (Thanks MartyKong for the Pac-Man Museum example)
+- generate html doc & include it in the release zip
 1.2.0 (2019/07/12)
 - add option to start disabled - [Issue #4](https://gitlab.com/SchwingSK/Keyboard2Xinput/issues/4)
 - add distinct keys to enable/disable - [Issue #5](https://gitlab.com/SchwingSK/Keyboard2Xinput/issues/5)
