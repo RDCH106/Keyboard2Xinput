@@ -102,9 +102,10 @@ namespace Keyboard2XinputLib
             if (enabled)
             {
 
-                for (int i = 1; i <= config.PadCount; i++)
+                for (int i = 0; i < config.PadCount; i++)
                 {
-                    string sectionName = "pad" + (i);
+                    int padNumberForDisplay = i + 1;
+                    string sectionName = "pad" + (padNumberForDisplay);
                     // is the key pressed mapped to a button?
                     string mappedButton = config.getCurrentMapping()[sectionName][vkCode.ToString()];
                     if (mappedButton != null)
@@ -113,21 +114,21 @@ namespace Keyboard2XinputLib
                         {
                             if ((eventType == WM_KEYDOWN) || (eventType == WM_SYSKEYDOWN))
                             {
-                                reports[i - 1].SetButtonState(buttonsDict[mappedButton], true);
+                                reports[i].SetButtonState(buttonsDict[mappedButton], true);
                                 if (log.IsDebugEnabled)
                                 {
-                                    log.Debug($"pad{i} {mappedButton} down");
+                                    log.Debug($"pad{padNumberForDisplay} {mappedButton} down");
                                 }
                             }
                             else
                             {
-                                reports[i - 1].SetButtonState(buttonsDict[mappedButton], false);
+                                reports[i].SetButtonState(buttonsDict[mappedButton], false);
                                 if (log.IsDebugEnabled)
                                 {
-                                    log.Debug($"pad{i} {mappedButton} up");
+                                    log.Debug($"pad{padNumberForDisplay} {mappedButton} up");
                                 }
                             }
-                            controllers[i - 1].SendReport(reports[i - 1]);
+                            controllers[i].SendReport(reports[i]);
                             handled = 1;
                             break;
                         }
@@ -136,21 +137,21 @@ namespace Keyboard2XinputLib
                             KeyValuePair<Xbox360Axes, short> axisValuePair = axesDict[mappedButton];
                             if ((eventType == WM_KEYDOWN) || (eventType == WM_SYSKEYDOWN))
                             {
-                                reports[i - 1].SetAxis(axisValuePair.Key, axisValuePair.Value);
+                                reports[i].SetAxis(axisValuePair.Key, axisValuePair.Value);
                                 if (log.IsDebugEnabled)
                                 {
-                                    log.Debug($"pad{i} {mappedButton} down");
+                                    log.Debug($"pad{padNumberForDisplay} {mappedButton} down");
                                 }
                             }
                             else
                             {
-                                reports[i - 1].SetAxis(axisValuePair.Key, 0x0);
+                                reports[i].SetAxis(axisValuePair.Key, 0x0);
                                 if (log.IsDebugEnabled)
                                 {
-                                    log.Debug($"pad{i} {mappedButton} up");
+                                    log.Debug($"pad{padNumberForDisplay} {mappedButton} up");
                                 }
                             }
-                            controllers[i - 1].SendReport(reports[i - 1]);
+                            controllers[i].SendReport(reports[i]);
                             handled = 1;
                             break;
                         }
