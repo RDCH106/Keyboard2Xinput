@@ -68,7 +68,6 @@ namespace Keyboard2XinputLib
             do {
                 configFilePath = $"{baseFolder}\\mapping{i}.ini";
                 exists = System.IO.File.Exists(configFilePath);
-                log.Info($"{configFilePath} exists: {exists}");
                 if (exists)
                 {
                     log.Info($"Loading additional mapping file: {configFilePath}");

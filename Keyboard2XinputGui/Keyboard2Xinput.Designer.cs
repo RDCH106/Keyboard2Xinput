@@ -183,24 +183,34 @@ namespace Keyboard2XinputGui
 
         {
 
-            //if (nCode >= 0 && wParam == (IntPtr)WM_KEYDOWN)
             if (nCode >= 0)
             {
+                Stopwatch watch = null;
+                if (log.IsDebugEnabled)
+                {
+                    watch = Stopwatch.StartNew();
+                }
+
                 int vkCode = Marshal.ReadInt32(lParam);
                 int handled = k2x.keyEvent((int)wParam, (Keys)vkCode);
+
+                if (log.IsDebugEnabled)
+                {
+                    watch.Stop();
+                    var elapsed = watch.ElapsedTicks;
+                    var ts = Stopwatch.GetTimestamp();
+                    log.Debug($"handling key took {elapsed * (1000.0 / Stopwatch.Frequency)} ms ; timestamp: {ts * (1000.0 / Stopwatch.Frequency)}ms");
+                }
+
+
                 if (handled == 1)
                 {
-                    //Console.WriteLine("Intercepted: "+(Keys)vkCode);
                     return (IntPtr)(-1);
                 }
                 else if (handled == -1)
                 {
                     // application exit requested
                     Application.Exit();
-                }
-                else
-                {
-                    //Console.WriteLine("Not intercepted: " + (Keys)vkCode);
                 }
             }
 

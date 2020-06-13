@@ -24,7 +24,7 @@ Copy-Item .\samples\ -Destination .\build\doc\ -Recurse
 $zipPath="$distDir\Keyboard2Xinput.zip"
 Write-Host "Generating $zipPath"
 $compress = @{
-Path = "$TargetDir*.dll", "$TargetDir*.exe", "$TargetDir*.config", "$TargetDir*.ini", "samples\mappings\I-PAC2\mapping.ini", "build\doc", "samples"
+Path = "$TargetDir*.dll", "$TargetDir*.exe", "dist\*.config", "$TargetDir*.ini", "samples\mappings\I-PAC2\mapping.ini", "build\doc", "samples"
 CompressionLevel = "Fastest"
 DestinationPath = "$zipPath"
 }

@@ -187,9 +187,9 @@ namespace Keyboard2XinputLib
                     if ((eventType == WM_KEYDOWN) || (eventType == WM_SYSKEYDOWN))
                     {
                         ToggleEnabled();
-                        if (log.IsDebugEnabled)
+                        if (log.IsInfoEnabled)
                         {
-                            log.Debug($"enableToggle down; enabled={enabled}");
+                            log.Info($"enableToggle down; enabled={enabled}");
                         }
                     }
                     handled = 1;
@@ -199,9 +199,9 @@ namespace Keyboard2XinputLib
                     if ((eventType == WM_KEYDOWN) || (eventType == WM_SYSKEYDOWN))
                     {
                         Enable();
-                        if (log.IsDebugEnabled)
+                        if (log.IsInfoEnabled)
                         {
-                            log.Debug($"enable down; enabled={enabled}");
+                            log.Info($"enable down; enabled={enabled}");
                         }
                     }
                     handled = 1;
@@ -211,9 +211,9 @@ namespace Keyboard2XinputLib
                     if ((eventType == WM_KEYDOWN) || (eventType == WM_SYSKEYDOWN))
                     {
                         Disable();
-                        if (log.IsDebugEnabled)
+                        if (log.IsInfoEnabled)
                         {
-                            log.Debug($"disable down; enabled={enabled}");
+                            log.Info($"disable down; enabled={enabled}");
                         }
                     }
                     handled = 1;
@@ -229,9 +229,9 @@ namespace Keyboard2XinputLib
                     if ((eventType == WM_KEYDOWN) || (eventType == WM_SYSKEYDOWN))
                     {
                         int index = Int32.Parse(configButton.Substring(configButton.Length - 1));
-                        if (log.IsDebugEnabled)
+                        if (log.IsInfoEnabled)
                         {
-                            log.Debug($"Switching to mapping {index}");
+                            log.Info($"Switching to mapping {index}");
                         }
                         config.CurrentMappingIndex = index;
                     }
@@ -239,9 +239,9 @@ namespace Keyboard2XinputLib
                 }
             }
 
-            if (handled == 0 && enabled && log.IsDebugEnabled)
+            if (handled == 0 && enabled && log.IsWarnEnabled)
             {
-                log.Debug($"unmapped button {vkCode.ToString()}");
+                log.Warn($"unmapped button {vkCode.ToString()}");
             }
 
             return handled;
@@ -286,7 +286,7 @@ namespace Keyboard2XinputLib
         }
         public void Close()
         {
-            log.Debug("Closing");
+            log.Info("Closing");
             foreach (Xbox360Controller controller in controllers)
             {
                 log.Debug($"Disconnecting {controller.ToString()}");
