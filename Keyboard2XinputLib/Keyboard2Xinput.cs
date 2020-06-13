@@ -89,11 +89,11 @@ namespace Keyboard2XinputLib
 
 
         /// <summary>
-        /// andles key events
+        /// handles key events
         /// </summary>
         /// <param name="eventType"></param>
         /// <param name="vkCode"></param>
-        /// <returns>1 if the event has been handled, 0 if the key was mapped, and -1 if the exit key has been pressed</returns>
+        /// <returns>1 if the event has been handled, 0 if the key was not mapped, and -1 if the exit key has been pressed</returns>
         public int keyEvent(int eventType, Keys vkCode)
         {
             int handled = 0;
