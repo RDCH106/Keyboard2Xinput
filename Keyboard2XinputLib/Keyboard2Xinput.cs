@@ -41,7 +41,8 @@ namespace Keyboard2XinputLib
             // start enabled?
             String startEnabledStr = config.getCurrentMapping()["startup"]["enabled"];
             // only start disabled if explicitly configured as such
-            if ((startEnabledStr != null) && ("false".Equals(startEnabledStr.ToLower()))) {
+            if ((startEnabledStr != null) && ("false".Equals(startEnabledStr.ToLower())))
+            {
                 enabled = false;
             }
 
@@ -128,6 +129,7 @@ namespace Keyboard2XinputLib
                             }
                             controllers[i - 1].SendReport(reports[i - 1]);
                             handled = 1;
+                            break;
                         }
                         else if (axesDict.ContainsKey(mappedButton))
                         {
@@ -150,67 +152,73 @@ namespace Keyboard2XinputLib
                             }
                             controllers[i - 1].SendReport(reports[i - 1]);
                             handled = 1;
+                            break;
                         }
 
                     }
                 }
             }
-            // handle the enable toggle key even if disabled (otherwise there's not much point to it...)
-            string enableButton = config.getCurrentMapping()["config"][vkCode.ToString()];
-            if ("enableToggle".Equals(enableButton))
+            if (handled == 0)
             {
-                if ((eventType == WM_KEYDOWN) || (eventType == WM_SYSKEYDOWN))
+                // handle the enable toggle key even if disabled (otherwise there's not much point to it...)
+                string enableButton = config.getCurrentMapping()["config"][vkCode.ToString()];
+                if ("enableToggle".Equals(enableButton))
                 {
-                    ToggleEnabled();
-                    if (log.IsDebugEnabled)
+                    if ((eventType == WM_KEYDOWN) || (eventType == WM_SYSKEYDOWN))
                     {
-                        log.Debug($"enableToggle down; enabled={enabled}");
+                        ToggleEnabled();
+                        if (log.IsDebugEnabled)
+                        {
+                            log.Debug($"enableToggle down; enabled={enabled}");
+                        }
                     }
+                    handled = 1;
                 }
-                handled = 1;
-            } else  if ("enable".Equals(enableButton))
-            {
-                if ((eventType == WM_KEYDOWN) || (eventType == WM_SYSKEYDOWN))
+                else if ("enable".Equals(enableButton))
                 {
-                    Enable();
-                    if (log.IsDebugEnabled)
+                    if ((eventType == WM_KEYDOWN) || (eventType == WM_SYSKEYDOWN))
                     {
-                        log.Debug($"enable down; enabled={enabled}");
+                        Enable();
+                        if (log.IsDebugEnabled)
+                        {
+                            log.Debug($"enable down; enabled={enabled}");
+                        }
                     }
+                    handled = 1;
                 }
-                handled = 1;
-            }
-            else if ("disable".Equals(enableButton))
-            {
-                if ((eventType == WM_KEYDOWN) || (eventType == WM_SYSKEYDOWN))
+                else if ("disable".Equals(enableButton))
                 {
-                    Disable();
-                    if (log.IsDebugEnabled)
+                    if ((eventType == WM_KEYDOWN) || (eventType == WM_SYSKEYDOWN))
                     {
-                        log.Debug($"disable down; enabled={enabled}");
+                        Disable();
+                        if (log.IsDebugEnabled)
+                        {
+                            log.Debug($"disable down; enabled={enabled}");
+                        }
                     }
+                    handled = 1;
                 }
-                handled = 1;
-            }
-            // key that exits the software
-            string configButton = config.getCurrentMapping()["config"][vkCode.ToString()];
-            if ("exit".Equals(configButton))
-            {
-                handled = -1;
-            }
-            else if ((configButton != null) && configButton.StartsWith("config"))
-            {
-                if ((eventType == WM_KEYDOWN) || (eventType == WM_SYSKEYDOWN))
+                // key that exits the software
+                string configButton = config.getCurrentMapping()["config"][vkCode.ToString()];
+                if ("exit".Equals(configButton))
                 {
-                    int index = Int32.Parse(configButton.Substring(configButton.Length - 1));
-                    if (log.IsDebugEnabled)
-                    {
-                        log.Debug($"Switching to mapping {index}");
-                    }
-                    config.CurrentMappingIndex = index;
+                    handled = -1;
                 }
-                handled = 1;
+                else if ((configButton != null) && configButton.StartsWith("config"))
+                {
+                    if ((eventType == WM_KEYDOWN) || (eventType == WM_SYSKEYDOWN))
+                    {
+                        int index = Int32.Parse(configButton.Substring(configButton.Length - 1));
+                        if (log.IsDebugEnabled)
+                        {
+                            log.Debug($"Switching to mapping {index}");
+                        }
+                        config.CurrentMappingIndex = index;
+                    }
+                    handled = 1;
+                }
             }
+
             if (handled == 0 && enabled && log.IsDebugEnabled)
             {
                 log.Debug($"unmapped button {vkCode.ToString()}");
