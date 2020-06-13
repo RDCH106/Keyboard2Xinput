@@ -26,6 +26,7 @@ namespace Keyboard2XinputLib
         private ViGEmClient client;
         private List<Xbox360Controller> controllers;
         private List<Xbox360Report> reports;
+        private List<ISet<Xbox360Buttons>> pressedButtons;
         private Config config;
         private Boolean enabled = true;
         private List<StateListener> listeners;
@@ -72,6 +73,12 @@ namespace Keyboard2XinputLib
                 reports.Add(new Xbox360Report());
                 Thread.Sleep(1000);
             }
+            // the pressed buttons (to avoid sending reports if the pressed buttons haven't changed)
+            pressedButtons = new List<ISet<Xbox360Buttons>>(config.PadCount);
+            for (int i = 0; i < config.PadCount; i++)
+            {
+                pressedButtons.Add(new HashSet<Xbox360Buttons>());
+            }
             listeners = new List<StateListener>();
         }
 
@@ -114,7 +121,16 @@ namespace Keyboard2XinputLib
                         {
                             if ((eventType == WM_KEYDOWN) || (eventType == WM_SYSKEYDOWN))
                             {
-                                reports[i].SetButtonState(buttonsDict[mappedButton], true);
+                                // if we already notified the virtual pad, don't do it again
+                                Xbox360Buttons pressedButton = buttonsDict[mappedButton];
+                                if (pressedButtons[i].Contains(pressedButton))
+                                {
+                                    handled = 1;
+                                    break;
+                                }
+                                // store the state of the button
+                                pressedButtons[i].Add(pressedButton);
+                                reports[i].SetButtonState(pressedButton, true);
                                 if (log.IsDebugEnabled)
                                 {
                                     log.Debug($"pad{padNumberForDisplay} {mappedButton} down");
@@ -122,7 +138,10 @@ namespace Keyboard2XinputLib
                             }
                             else
                             {
-                                reports[i].SetButtonState(buttonsDict[mappedButton], false);
+                                Xbox360Buttons pressedButton = buttonsDict[mappedButton];
+                                reports[i].SetButtonState(pressedButton, false);
+                                // remove the button state from our own set
+                                pressedButtons[i].Remove(pressedButton);
                                 if (log.IsDebugEnabled)
                                 {
                                     log.Debug($"pad{padNumberForDisplay} {mappedButton} up");
